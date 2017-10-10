@@ -1,0 +1,39 @@
+group 'com.zyl'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext { springBootVersion = '1.5.7.RELEASE' }
+    repositories { mavenCentral() }
+    dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
+}
+
+allprojects {
+    group 'com.zyl'
+    version '1.0-SNAPSHOT'
+}
+
+subprojects {
+
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+
+    sourceCompatibility = 1.8
+
+    bootRepackage {
+        mainClass = 'hello.app.DemoApplication'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile('org.springframework.boot:spring-boot-starter')
+        compile('org.springframework.boot:spring-boot-starter-actuator')
+        compile('org.springframework.boot:spring-boot-starter-web')
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+
+}
